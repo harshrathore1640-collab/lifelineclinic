@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Line Clinic | No. 1 Online Medical Wing - Dr. Vikas Chaturvedi</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        medical: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            dark: '#0f172a',
+                            accent: '#d97706', // Gold Medalist accent
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome for professional icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS for animations and glassmorphism -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(6, 78, 59, 0.95) 0%, rgba(15, 23, 42, 0.92) 100%);
+        }
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(217, 119, 6, 0.3);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite ease-in-out;
+        }
+        /* Hide scrollbar for clean carousel if needed */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-medical-600 selection:text-white">
+
+    <!-- Top Bar -->
+    <div class="bg-medical-900 text-white text-xs md:text-sm py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-6">
+                <span><i class="fas fa-map-marker-alt text-medical-accent mr-2"></i> Station Road, Sahjanwa, Gorakhpur, UP 273209</span>
+                <span class="hidden md:inline"><i class="fas fa-clock text-medical-accent mr-2"></i> Mon - Sat: 9:00 AM - 7:00 PM</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="tel:9621996805" class="hover:text-medical-accent transition"><i class="fas fa-phone-alt text-medical-accent mr-1"></i> 9621996805</a>
+                <a href="https://instagram.com/lifelineclinic85" target="_blank" class="hover:text-medical-accent transition"><i class="fab fa-instagram text-medical-accent mr-1"></i> @lifelineclinic85</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 rounded-xl bg-medical-800 flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition transform">
+                        <i class="fas fa-heart-pulse text-2xl text-medical-accent"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-medical-900 block leading-tight">Life Line Clinic</span>
+                        <span class="text-xs font-semibold text-medical-accent tracking-widest uppercase">No. 1 Online Medical Wing</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="font-medium text-medical-800 hover:text-medical-600 transition">Home</a>
+                    <a href="#about" class="font-medium text-slate-600 hover:text-medical-600 transition">About Doctor</a>
+                    <a href="#services" class="font-medium text-slate-600 hover:text-medical-600 transition">Treatments</a>
+                    <a href="#vsl" class="font-medium text-slate-600 hover:text-medical-600 transition">Consultation</a>
+                    <a href="#gallery" class="font-medium text-slate-600 hover:text-medical-600 transition">Gallery</a>
+                    <a href="#reviews" class="font-medium text-slate-600 hover:text-medical-600 transition">Reviews</a>
+                    <a href="#faq" class="font-medium text-slate-600 hover:text-medical-600 transition">FAQ</a>
+                    <a href="#contact" class="font-medium text-slate-600 hover:text-medical-600 transition">Contact</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <button onclick="openAppointmentModal()" class="bg-medical-700 hover:bg-medical-800 text-white px-5 py-2.5 rounded-xl font-semibold shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 flex items-center space-x-2">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Book Appointment</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-slate-700 focus:outline-none p-2">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-6 shadow-xl">
+            <div class="flex flex-col space-y-3">
+                <a href="#home" class="mobile-link px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-medical-50">Home</a>
+                <a href="#about" class="mobile-link px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-medical-50">About Doctor</a>
+                <a href="#services" class="mobile-link px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-medical-50">Treatments</a>
+                <a href="#vsl" class="mobile-link px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-medical-50">Consultation</a>
+                <a href="#gallery" class="mobile-link px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-medical-50">Gallery</a>
+                <a href="#reviews" class="mobile-link px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-medical-50">Reviews</a>
+                <a href="#faq" class="mobile-link px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-medical-50">FAQ</a>
+                <a href="#contact" class="mobile-link px-3 py-2 rounded-lg font-medium text-slate-700 hover:bg-medical-50">Contact</a>
+                <button onclick="openAppointmentModal()" class="w-full bg-medical-700 text-white py-3 rounded-xl font-semibold shadow-md mt-2">
+                    <i class="fas fa-calendar-check mr-2"></i> Book Appointment
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-[90vh] flex items-center justify-center bg-slate-900 overflow-hidden py-20">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1920&q=80" alt="Medical Clinic Background" class="w-full h-full object-cover object-center opacity-30 transform scale-105 animate-pulse-slow">
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white py-12">
+            <!-- Badge -->
+            <div class="inline-flex items-center space-x-2 bg-medical-accent/20 border border-medical-accent/40 px-4 py-2 rounded-full mb-6 backdrop-blur-sm">
+                <span class="flex h-2 w-2 rounded-full bg-medical-accent animate-ping"></span>
+                <span class="text-medical-accent font-semibold text-xs sm:text-sm tracking-wide uppercase">⭐ Gold Medalist Chronic Disease Specialist</span>
+            </div>
+
+            <!-- Motto / Main Heading -->
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
+                "अब हिंदुस्तान Tumour से <span class="text-medical-accent underline decoration-medical-accent/50 decoration-2">लड़ेगा नहीं जीतेगा</span>"
+            </h1>
+            
+            <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto mb-8 font-light">
+                Welcome to <strong class="text-white font-semibold">Life Line Clinic</strong> — The No. 1 Online Medical Wing led by <span class="text-medical-accent font-semibold">Dr. Vikas Chaturvedi (BHMS, NHMC)</span>. Specialized in advanced chronic disease treatments and tumor care.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-14">
+                <a href="tel:9621996805" class="w-full sm:w-auto bg-medical-accent hover:bg-amber-600 text-slate-950 px-8 py-4 rounded-2xl font-bold shadow-xl transition transform hover:-translate-y-1 flex items-center justify-center space-x-3 text-lg">
+                    <i class="fas fa-phone-alt animate-bounce"></i>
+                    <span>Call Now: 9621996805</span>
+                </a>
+                <a href="https://wa.me/919621996805?text=Hello%20Dr.%20Vikas%20Chaturvedi,%20I%20want%20to%20consult%20regarding%20chronic%20disease/tumor%20treatment." target="_blank" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-2xl font-bold shadow-xl transition transform hover:-translate-y-1 flex items-center justify-center space-x-3 text-lg">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                    <span>WhatsApp Consult</span>
+                </a>
+                <button onclick="openAppointmentModal()" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 border border-white/30 text-white px-8 py-4 rounded-2xl font-bold backdrop-blur-md transition transform hover:-translate-y-1 flex items-center justify-center space-x-3 text-lg">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Book Consultation</span>
+                </button>
+            </div>
+
+            <!-- Trust Stats Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-slate-700/60">
+                <div class="bg-slate-800/60 backdrop-blur-md p-4 rounded-2xl border border-slate-700">
+                    <div class="text-3xl font-extrabold text-medical-accent mb-1">51.8K+</div>
+                    <div class="text-xs text-slate-300 font-medium uppercase tracking-wider">Online Followers</div>
+                </div>
+                <div class="bg-slate-800/60 backdrop-blur-md p-4 rounded-2xl border border-slate-700">
+                    <div class="text-3xl font-extrabold text-medical-accent mb-1">Gold</div>
+                    <div class="text-xs text-slate-300 font-medium uppercase tracking-wider">Medalist Expert</div>
+                </div>
+                <div class="bg-slate-800/60 backdrop-blur-md p-4 rounded-2xl border border-slate-700">
+                    <div class="text-3xl font-extrabold text-medical-accent mb-1">100%</div>
+                    <div class="text-xs text-slate-300 font-medium uppercase tracking-wider">Dedicated Care</div>
+                </div>
+                <div class="bg-slate-800/60 backdrop-blur-md p-4 rounded-2xl border border-slate-700">
+                    <div class="text-3xl font-extrabold text-medical-accent mb-1">24/7</div>
+                    <div class="text-xs text-slate-300 font-medium uppercase tracking-wider">Online Medical Wing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-medical-600 tracking-widest uppercase mb-3">Meet the Specialist</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Dr. Vikas Chaturvedi</h3>
+                <div class="w-20 h-1 bg-medical-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Doctor Image / Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-medical-100 group">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80" alt="Dr. Vikas Chaturvedi" class="w-full h-[480px] object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-medical-900/90 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                            <span class="text-medical-accent font-bold text-sm">Gold Medalist Chronic Disease Specialist</span>
+                            <h4 class="text-2xl font-extrabold">Dr. Vikas Chaturvedi</h4>
+                            <p class="text-slate-300 text-sm">BHMS, NHMC</p>
+                        </div>
+                    </div>
+                    <!-- Decorative Element -->
+                    <div class="absolute -bottom-6 -right-6 bg-medical-accent text-slate-950 p-6 rounded-2xl shadow-xl hidden sm:block">
+                        <div class="text-2xl font-black">No. 1</div>
+                        <div class="text-xs font-bold uppercase tracking-wider">Online Medical Wing</div>
+                    </div>
+                </div>
+
+                <!-- Doctor Bio Details -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-block bg-medical-50 text-medical-800 text-xs font-bold px-3 py-1.5 rounded-full uppercase">
+                        Excellence in Homeopathy & Tumor Care
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 leading-snug">
+                        Dedicated to eradicating complex chronic diseases and tumours with advanced homeopathic science.
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        Dr. Vikas Chaturvedi is a renowned Gold Medalist Homeopathic Physician (BHMS, NHMC) practicing at Life Line Clinic, Sahjanwa, Gorakhpur. With thousands of successful case analyses and online consultations across India, Dr. Chaturvedi specializes in long-term relief and constitutional healing for stubborn chronic illnesses and tumour cases.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="flex items-start space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <div class="w-10 h-10 rounded-lg bg-medical-600 text-white flex items-center justify-center shrink-0">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900">Gold Medalist</h5>
+                                <p class="text-xs text-slate-500">Academic excellence & clinical precision</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <div class="w-10 h-10 rounded-lg bg-medical-600 text-white flex items-center justify-center shrink-0">
+                                <i class="fas fa-stethoscope"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900">BHMS & NHMC</h5>
+                                <p class="text-xs text-slate-500">Certified homeopathic medical graduate</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <div class="w-10 h-10 rounded-lg bg-medical-600 text-white flex items-center justify-center shrink-0">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900">Online Medical Wing</h5>
+                                <p class="text-xs text-slate-500">Serving 51.8K+ followers nationwide</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <div class="w-10 h-10 rounded-lg bg-medical-600 text-white flex items-center justify-center shrink-0">
+                                <i class="fas fa-shield-heart"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900">Tumour & Chronic Care</h5>
+                                <p class="text-xs text-slate-500">Specialized root-cause treatment protocols</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex items-center space-x-4">
+                        <a href="tel:9621996805" class="bg-medical-800 hover:bg-medical-900 text-white px-6 py-3 rounded-xl font-semibold shadow transition flex items-center space-x-2">
+                            <i class="fas fa-phone"></i>
+                            <span>Speak to Dr. Vikas</span>
+                        </a>
+                        <a href="https://instagram.com/lifelineclinic85" target="_blank" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-xl font-semibold shadow transition flex items-center space-x-2">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram @lifelineclinic85</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-medical-600 tracking-widest uppercase mb-3">Our Medical Expertise</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Chronic Disease Treatments & Services</h3>
+                <div class="w-20 h-1 bg-medical-accent mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-600 mt-4">Comprehensive, individualized homeopathic care backed by modern case analysis.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-3xl p-8 shadow-md hover:shadow-xl transition duration-300 border border-slate-200/80 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-medical-50 text-medical-700 flex items-center justify-center text-2xl mb-6 group-hover:bg-medical-700 group-hover:text-white transition duration-300">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3">Tumour Care & Management</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Advanced homeopathic treatments formulated to arrest abnormal cell proliferation and support tumor regression with motto: "अब हिंदुस्तान Tumour से लड़ेगा नहीं जीतेगा".
+                        </p>
+                    </div>
+                    <button onclick="openAppointmentModal()" class="text-medical-700 font-semibold text-sm flex items-center space-x-2 group-hover:text-medical-accent transition">
+                        <span>Consult Now</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-white rounded-3xl p-8 shadow-md hover:shadow-xl transition duration-300 border border-slate-200/80 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-medical-50 text-medical-700 flex items-center justify-center text-2xl mb-6 group-hover:bg-medical-700 group-hover:text-white transition duration-300">
+                            <i class="fas fa-notes-medical"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3">Chronic Disease Specialist</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Specialized treatment protocols for long-standing autoimmune disorders, metabolic issues, recurring infections, and chronic organ dysfunctions.
+                        </p>
+                    </div>
+                    <button onclick="openAppointmentModal()" class="text-medical-700 font-semibold text-sm flex items-center space-x-2 group-hover:text-medical-accent transition">
+                        <span>Consult Now</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white rounded-3xl p-8 shadow-md hover:shadow-xl transition duration-300 border border-slate-200/80 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-medical-50 text-medical-700 flex items-center justify-center text-2xl mb-6 group-hover:bg-medical-700 group-hover:text-white transition duration-300">
+                            <i class="fas fa-laptop-medical"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3">Online Medical Wing Consult</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            No. 1 Online Medical Wing allowing patients from across the globe to share medical reports, get case analysis, and receive courier medicine delivery.
+                        </p>
+                    </div>
+                    <button onclick="openAppointmentModal()" class="text-medical-700 font-semibold text-sm flex items-center space-x-2 group-hover:text-medical-accent transition">
+                        <span>Consult Now</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-white rounded-3xl p-8 shadow-md hover:shadow-xl transition duration-300 border border-slate-200/80 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-medical-50 text-medical-700 flex items-center justify-center text-2xl mb-6 group-hover:bg-medical-700 group-hover:text-white transition duration-300">
+                            <i class="fas fa-file-waveform"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3">Detailed Case Analysis</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            In-depth psychological and physical case evaluation by Dr. Vikas Chaturvedi to identify root causes and individual miasmatic backgrounds.
+                        </p>
+                    </div>
+                    <button onclick="openAppointmentModal()" class="text-medical-700 font-semibold text-sm flex items-center space-x-2 group-hover:text-medical-accent transition">
+                        <span>Consult Now</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-white rounded-3xl p-8 shadow-md hover:shadow-xl transition duration-300 border border-slate-200/80 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-medical-50 text-medical-700 flex items-center justify-center text-2xl mb-6 group-hover:bg-medical-700 group-hover:text-white transition duration-300">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3">Homeopathy Excellence</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Safe, side-effect-free, potentized homeopathic remedies that stimulate self-healing mechanisms for permanent recovery.
+                        </p>
+                    </div>
+                    <button onclick="openAppointmentModal()" class="text-medical-700 font-semibold text-sm flex items-center space-x-2 group-hover:text-medical-accent transition">
+                        <span>Consult Now</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-white rounded-3xl p-8 shadow-md hover:shadow-xl transition duration-300 border border-slate-200/80 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-16 h-16 rounded-2xl bg-medical-50 text-medical-700 flex items-center justify-center text-2xl mb-6 group-hover:bg-medical-700 group-hover:text-white transition duration-300">
+                            <i class="fas fa-hospital-user"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3">Clinic & Emergency Support</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            State-of-the-art clinic visits at Station Road, Sahjanwa, Gorakhpur with dedicated staff and warm patient hospitality.
+                        </p>
+                    </div>
+                    <button onclick="openAppointmentModal()" class="text-medical-700 font-semibold text-sm flex items-center space-x-2 group-hover:text-medical-accent transition">
+                        <span>Consult Now</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VSL / Video Section -->
+    <section id="vsl" class="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1920&q=80" alt="Medical consultation" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-medical-accent tracking-widest uppercase mb-3">Watch Patient Success & Case Analysis</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold">Online Medical Wing Highlights</h3>
+                <div class="w-20 h-1 bg-medical-accent mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-300 mt-4">Hear Dr. Vikas Chaturvedi explain effective tumor care strategies and patient success stories.</p>
+            </div>
+
+            <!-- Video Player Mock / Embed -->
+            <div class="max-w-4xl mx-auto bg-slate-800 rounded-3xl overflow-hidden shadow-2xl border border-slate-700">
+                <div class="relative aspect-video bg-slate-950 flex items-center justify-center group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80" alt="Video thumbnail" class="w-full h-full object-cover opacity-70 group-hover:opacity-85 transition">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                    <div class="absolute w-20 h-20 rounded-full bg-medical-accent text-slate-950 flex items-center justify-center shadow-2xl group-hover:scale-110 transition duration-300">
+                        <i class="fas fa-play text-2xl ml-1"></i>
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="bg-medical-600 text-white text-xs px-3 py-1 rounded-full font-semibold mb-2 inline-block">Tumour Case Analysis #01</span>
+                        <h4 class="text-xl font-bold text-white">Dr. Vikas Chaturvedi explaining homeopathic tumor recovery protocols</h4>
+                    </div>
+                </div>
+                <div class="p-6 bg-slate-800/90 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="text-sm text-slate-300">
+                        <i class="fab fa-instagram text-pink-500 mr-2 text-lg"></i> Follow daily case updates on Instagram: <strong class="text-white">@lifelineclinic85</strong>
+                    </div>
+                    <a href="https://instagram.com/lifelineclinic85" target="_blank" class="bg-pink-600 hover:bg-pink-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition flex items-center space-x-2">
+                        <i class="fab fa-instagram"></i>
+                        <span>Visit Instagram Reels</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-medical-600 tracking-widest uppercase mb-3">Clinic & Patient Care</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Gallery & Clinical Highlights</h3>
+                <div class="w-20 h-1 bg-medical-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="relative rounded-2xl overflow-hidden shadow-md group h-72">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80" alt="Clinic interior" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
+                        <p class="text-white font-semibold">Life Line Clinic Sahjanwa Gorakhpur</p>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden shadow-md group h-72">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80" alt="Doctor consultation" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
+                        <p class="text-white font-semibold">Patient Consultation Session</p>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden shadow-md group h-72">
+                    <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80" alt="Medical research" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
+                        <p class="text-white font-semibold">Chronic Disease Case Study</p>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden shadow-md group h-72">
+                    <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=800&q=80" alt="Pharmacy and remedies" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
+                        <p class="text-white font-semibold">Homeopathic Remedies Wing</p>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden shadow-md group h-72">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80" alt="Online medical wing" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
+                        <p class="text-white font-semibold">Online Medical Wing Desk</p>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden shadow-md group h-72">
+                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" alt="Patient success" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
+                        <p class="text-white font-semibold">Successful Tumor Recovery Care</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-24 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-medical-600 tracking-widest uppercase mb-3">Patient Testimonials</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">What Our Patients Say</h3>
+                <div class="w-20 h-1 bg-medical-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-md border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-4 text-sm">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed italic mb-6">
+                            "Dr. Vikas Chaturvedi is a true life saver. Under his tumor treatment protocol, my health improved remarkably. Best doctor in Gorakhpur for chronic diseases!"
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-slate-100">
+                        <div class="w-12 h-12 rounded-full bg-medical-100 text-medical-800 font-bold flex items-center justify-center">
+                            AK
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Amit Kumar</h5>
+                            <p class="text-xs text-slate-500">Gorakhpur, UP</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-md border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-4 text-sm">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed italic mb-6">
+                            "I consulted online through their WhatsApp medical wing from Delhi. The medicine delivery was prompt, and Dr. Vikas's guidance gave us immense hope."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-slate-100">
+                        <div class="w-12 h-12 rounded-full bg-medical-100 text-medical-800 font-bold flex items-center justify-center">
+                            PS
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Priya Sharma</h5>
+                            <p class="text-xs text-slate-500">New Delhi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-md border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-4 text-sm">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed italic mb-6">
+                            "Truly the No. 1 Online Medical Wing. Dr. Vikas Chaturvedi's Gold Medalist expertise in chronic ailments is evident in his compassionate diagnosis."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-slate-100">
+                        <div class="w-12 h-12 rounded-full bg-medical-100 text-medical-800 font-bold flex items-center justify-center">
+                            RP
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Rajesh Pandey</h5>
+                            <p class="text-xs text-slate-500">Sahjanwa, Gorakhpur</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-medical-600 tracking-widest uppercase mb-3">Got Questions?</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Frequently Asked Questions</h3>
+                <div class="w-20 h-1 bg-medical-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left font-bold text-slate-900 hover:bg-slate-50 transition">
+                        <span>How can I book an online consultation with Dr. Vikas Chaturvedi?</span>
+                        <i class="fas fa-chevron-down text-medical-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden px-6 pb-6 text-slate-600 text-sm leading-relaxed">
+                        You can book an online consultation instantly by calling <strong>9621996805</strong> or messaging via WhatsApp. You can also share your medical reports directly for online case analysis.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left font-bold text-slate-900 hover:bg-slate-50 transition">
+                        <span>Where is Life Line Clinic located?</span>
+                        <i class="fas fa-chevron-down text-medical-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden px-6 pb-6 text-slate-600 text-sm leading-relaxed">
+                        Life Line Clinic is located at <strong>Station Road, Sahjanwa, District Gorakhpur, Uttar Pradesh, PIN 273209</strong>.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left font-bold text-slate-900 hover:bg-slate-50 transition">
+                        <span>Do you provide medicine delivery outside Gorakhpur?</span>
+                        <i class="fas fa-chevron-down text-medical-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden px-6 pb-6 text-slate-600 text-sm leading-relaxed">
+                        Yes! Through our No. 1 Online Medical Wing, we securely courier prescribed homeopathic medications and remedies to patients across India and worldwide.
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-6 text-left font-bold text-slate-900 hover:bg-slate-50 transition">
+                        <span>What types of chronic diseases and tumor treatments are available?</span>
+                        <i class="fas fa-chevron-down text-medical-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden px-6 pb-6 text-slate-600 text-sm leading-relaxed">
+                        Dr. Vikas Chaturvedi specializes in constitutional homeopathy for stubborn chronic ailments and tumor care following the motto: "अब हिंदुस्तान Tumour से लड़ेगा नहीं जीतेगा".
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map / Location Section -->
+    <section id="location" class="py-24 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-medical-600 tracking-widest uppercase mb-3">Visit Our Clinic</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Clinic Location & Directions</h3>
+                <div class="w-20 h-1 bg-medical-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-5 bg-white p-8 rounded-3xl shadow-md border border-slate-200 space-y-6">
+                    <h4 class="text-2xl font-bold text-slate-900">Life Line Clinic</h4>
+                    <div class="space-y-4 text-slate-600">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-medical-600 text-xl mt-1"></i>
+                            <div>
+                                <strong class="text-slate-900 block">Address:</strong>
+                                Station Road, Sahjanwa, District Gorakhpur, Uttar Pradesh, PIN 273209
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-phone-alt text-medical-600 text-lg"></i>
+                            <div>
+                                <strong class="text-slate-900 block">Mobile Number:</strong>
+                                <a href="tel:9621996805" class="text-medical-700 font-bold hover:underline">9621996805</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fab fa-instagram text-pink-600 text-lg"></i>
+                            <div>
+                                <strong class="text-slate-900 block">Instagram ID:</strong>
+                                <a href="https://instagram.com/lifelineclinic85" target="_blank" class="text-pink-600 font-bold hover:underline">@lifelineclinic85</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-clock text-medical-600 text-lg"></i>
+                            <div>
+                                <strong class="text-slate-900 block">Working Hours:</strong>
+                                Monday - Saturday: 9:00 AM - 7:00 PM
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://maps.google.com/?q=Station+Road+Sahjanwa+Gorakhpur" target="_blank" class="w-full bg-medical-700 hover:bg-medical-800 text-white py-3.5 rounded-xl font-semibold shadow flex items-center justify-center space-x-2 transition">
+                        <i class="fas fa-directions"></i>
+                        <span>Get Google Maps Directions</span>
+                    </a>
+                </div>
+
+                <div class="lg:col-span-7 h-[420px] rounded-3xl overflow-hidden shadow-lg border border-slate-200">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3562.0!2d83.14!3d26.75!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjYuNzUnIDgzLjE0Ig!5e0!3m2!1sen!2sin!4v1650000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-medical-600 tracking-widest uppercase mb-3">Get in Touch</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Book Your Appointment or Send Inquiry</h3>
+                <div class="w-20 h-1 bg-medical-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-medical-900 text-white p-8 rounded-3xl shadow-xl space-y-6">
+                        <h4 class="text-2xl font-bold">Quick Contact Info</h4>
+                        <p class="text-slate-300 text-sm">Reach out to Dr. Vikas Chaturvedi directly for urgent tumor care or chronic disease consultation.</p>
+                        
+                        <div class="space-y-4 pt-4 border-t border-slate-700">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-2xl bg-medical-800 text-medical-accent flex items-center justify-center text-xl shrink-0">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block">Call Us Anytime</span>
+                                    <a href="tel:9621996805" class="text-lg font-bold hover:text-medical-accent transition">9621996805</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-2xl bg-medical-800 text-emerald-400 flex items-center justify-center text-xl shrink-0">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block">WhatsApp Consult</span>
+                                    <a href="https://wa.me/919621996805" target="_blank" class="text-lg font-bold hover:text-emerald-400 transition">9621996805</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-2xl bg-medical-800 text-pink-400 flex items-center justify-center text-xl shrink-0">
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block">Instagram Handle</span>
+                                    <a href="https://instagram.com/lifelineclinic85" target="_blank" class="text-lg font-bold hover:text-pink-400 transition">@lifelineclinic85</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-slate-50 p-8 rounded-3xl shadow-md border border-slate-200">
+                    <form onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Your Full Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-medical-600 focus:outline-none bg-white" placeholder="Enter your name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Mobile Number</label>
+                                <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-medical-600 focus:outline-none bg-white" placeholder="Enter mobile number">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Health Condition / Disease</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-medical-600 focus:outline-none bg-white" placeholder="e.g. Tumor Care, Chronic Disease, etc.">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Message / Symptoms Detail</label>
+                            <textarea rows="4" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-medical-600 focus:outline-none bg-white" placeholder="Describe symptoms or medical history..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-medical-700 hover:bg-medical-800 text-white py-4 rounded-xl font-bold shadow-lg transition transform hover:-translate-y-0.5">
+                            Submit Consultation Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-medical-800 flex items-center justify-center text-white">
+                            <i class="fas fa-heart-pulse text-medical-accent"></i>
+                        </div>
+                        <span class="text-xl font-extrabold text-white">Life Line Clinic</span>
+                    </div>
+                    <p class="text-sm text-slate-400">
+                        No. 1 Online Medical Wing led by Dr. Vikas Chaturvedi (BHMS, NHMC, Gold Medalist). Chronic Disease & Tumour Care Specialist.
+                    </p>
+                    <p class="text-medical-accent font-bold text-sm italic">
+                        "अब हिंदुस्तान Tumour से लड़ेगा नहीं जीतेगा"
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Quick Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="hover:text-medical-accent transition">Home</a></li>
+                        <li><a href="#about" class="hover:text-medical-accent transition">About Dr. Vikas Chaturvedi</a></li>
+                        <li><a href="#services" class="hover:text-medical-accent transition">Treatments & Services</a></li>
+                        <li><a href="#vsl" class="hover:text-medical-accent transition">Online Medical Wing</a></li>
+                        <li><a href="#reviews" class="hover:text-medical-accent transition">Patient Reviews</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Specializations</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><span class="text-slate-300">Tumour Care & Regression</span></li>
+                        <li><span class="text-slate-300">Chronic Disease Specialist</span></li>
+                        <li><span class="text-slate-300">Homeopathy Gold Medalist Care</span></li>
+                        <li><span class="text-slate-300">Online Case Analysis</span></li>
+                        <li><span class="text-slate-300">Worldwide Medicine Delivery</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold mb-4 uppercase text-sm tracking-wider">Connect With Us</h5>
+                    <p class="text-sm mb-4"><i class="fas fa-phone-alt text-medical-accent mr-2"></i> 9621996805</p>
+                    <p class="text-sm mb-4"><i class="fas fa-map-marker-alt text-medical-accent mr-2"></i> Station Road, Sahjanwa, Gorakhpur, UP 273209</p>
+                    <div class="flex space-x-4 pt-2">
+                        <a href="https://instagram.com/lifelineclinic85" target="_blank" class="w-10 h-10 rounded-full bg-slate-900 text-pink-500 hover:bg-pink-600 hover:text-white flex items-center justify-center transition shadow">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/919621996805" target="_blank" class="w-10 h-10 rounded-full bg-slate-900 text-emerald-500 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition shadow">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="tel:9621996805" class="w-10 h-10 rounded-full bg-slate-900 text-medical-accent hover:bg-medical-accent hover:text-slate-950 flex items-center justify-center transition shadow">
+                            <i class="fas fa-phone-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 Life Line Clinic. All rights reserved.</p>
+                <p class="font-medium text-slate-400">Designed by Marwar Infotech</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Call & WhatsApp Buttons -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col space-y-3">
+        <a href="https://wa.me/919621996805?text=Hello%20Dr.%20Vikas%20Chaturvedi,%20I%20want%20to%20consult%20regarding%20chronic%20disease/tumor%20treatment." target="_blank" class="w-14 h-14 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-110 text-2xl" title="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:9621996805" class="w-14 h-14 bg-medical-accent hover:bg-amber-600 text-slate-950 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-110 text-xl font-bold" title="Call 9621996805">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+    </div>
+
+    <!-- Appointment Modal -->
+    <div id="appointment-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeAppointmentModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-medical-50 text-medical-700 flex items-center justify-center text-xl mx-auto mb-3">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900">Book Online Consultation</h3>
+                <p class="text-xs text-slate-500 mt-1">Life Line Clinic - Dr. Vikas Chaturvedi (9621996805)</p>
+            </div>
+
+            <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Full Name</label>
+                    <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-medical-600 focus:outline-none" placeholder="Your name">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Mobile Number</label>
+                    <input type="tel" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-medical-600 focus:outline-none" placeholder="Mobile number">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Condition / Disease</label>
+                    <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-medical-600 focus:outline-none" placeholder="e.g. Tumour, Chronic Disease">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Preferred Date</label>
+                    <input type="date" required class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-medical-600 focus:outline-none">
+                </div>
+                <button type="submit" class="w-full bg-medical-700 hover:bg-medical-800 text-white py-3 rounded-xl font-bold text-sm shadow transition">
+                    Confirm Appointment Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Message Modal -->
+    <div id="success-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-8 text-center shadow-2xl">
+            <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto mb-4">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Request Received!</h3>
+            <p class="text-xs text-slate-600 mb-6">Thank you for contacting Life Line Clinic. Dr. Vikas Chaturvedi's team will call you back shortly on 9621996805.</p>
+            <button onclick="closeSuccessModal()" class="w-full bg-medical-700 text-white py-3 rounded-xl font-bold text-sm">OK</button>
+        </div>
+    </div>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // FAQ Toggle
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Modal Functions
+        function openAppointmentModal() {
+            document.getElementById('appointment-modal').classList.remove('hidden');
+        }
+
+        function closeAppointmentModal() {
+            document.getElementById('appointment-modal').classList.add('hidden');
+        }
+
+        function handleModalSubmit(event) {
+            event.preventDefault();
+            closeAppointmentModal();
+            document.getElementById('success-modal').classList.remove('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            document.getElementById('success-modal').classList.remove('hidden');
+            event.target.reset();
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
